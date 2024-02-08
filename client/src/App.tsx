@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <div className='text'>
-        <h1>{data.message}</h1>
+        <h1>CI/CD pipeline working in VPS!</h1>
       </div>
     </>
   );
