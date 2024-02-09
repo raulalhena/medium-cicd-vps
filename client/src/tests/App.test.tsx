@@ -1,9 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 
+const mockGetData = () => {
+  
+}
+
+
 describe('App', async () => {
   it('should render with the title visible', async () => {
-    const spy = jest.spyOn(App, getData);
+    const spy = jest.spyOn(window, 'fetch').mockImplementation(mockGetData);
+    const resp = App.getData();
 
     render(<App />);
     // const h1 = await screen.queryByRole('h1');
