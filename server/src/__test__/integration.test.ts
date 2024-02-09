@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { httpServer } from '../src/app';
+import { httpServer } from '../app';
 
 describe('Testing API', () => {
   afterAll(() => {

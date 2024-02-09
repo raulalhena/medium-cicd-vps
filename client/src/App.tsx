@@ -1,6 +1,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 
+// CI/CD pipeline working in VPS!
+
 function App() {
 
   const [ data, setData ] = useState('Not connecting to server');
@@ -19,7 +21,7 @@ function App() {
   return (
     <>
       <div className='text'>
-        <h1>CI/CD pipeline working in VPS!</h1>
+        <h1>{ data.message }</h1>
       </div>
     </>
   );

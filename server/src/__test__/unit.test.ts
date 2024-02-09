@@ -1,6 +1,5 @@
 
-import { describe, expect, test } from '@jest/globals';
-import { getMessage, httpServer } from '../src/app';
+import { getMessage, httpServer } from '../app';
 
 describe('sum module', () => {
   afterAll(async () => {

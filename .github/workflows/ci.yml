@@ -1,0 +1,45 @@
+# Pipeline para integrar aplicaciones NodeJS en un VPS: Raul Alhena
+
+name: Node.js CI
+
+# Controla cuando la acción se iniciará. 
+on:
+  # Disparador del workflow, la condición que se tiene que cumplir para poner en 
+  # marcha el worwflow, en este caso: realizar un push en la rama main del repositorio
+  push:
+    branches: [ main ]
+
+# Este es el proceso de acciones que se van a ejecutar, pueden ejecutarse de un job a varios,
+# tanto secuancialmente en paralelo
+jobs:
+  # Definimos un job llamado "build"
+  build:
+    # El sistema en el que se ejecutará el job
+    runs-on: ubuntu-latest
+
+    # steps representa la secuencia de tareas que se ejecutarán como parte del job
+    steps:
+    - name: Integration using ssh
+      uses: appleboy/ssh-action@master
+      # Usamos variables de entorno del propio Github para no exponer información delicada
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22
+        # En esta sección se ejecutan los comando sobre el sistema para conseguir la integración
+        script: |
+          cd /home/${{ secrets.USERNAME }}/apps/actos/
+          git pull origin main
+          nvm use v18.16.1
+          cd server
+          npm install
+          npm run build
+          npm run test
+          cd ..
+          cd client
+          npm install
+          npm run build
+          npm run test
