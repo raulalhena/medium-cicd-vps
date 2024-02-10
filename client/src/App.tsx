@@ -16,7 +16,7 @@ function App() {
   const [ data, setData ] = useState({ message: 'Not connected to server' });
 
   dataObj.getData = async (): Promise<Message> => {
-    const resp = await fetch('http://localhost:3000/');
+    const resp = await fetch('http://raulalhena.com:3000/');
     const result: Message = await resp.json();
 
     setData(result);
