@@ -1,11 +1,14 @@
 import { render, act, waitFor } from '@testing-library/react';
 import App, { dataObj } from '../App';
 
+let result = {
+  message: 'Not connected to server'
+};
+
 describe('App', () => {
   it('should render with the title visible', async () => {
-    const spy = vi.spyOn(dataObj, 'getData').mockResolvedValue({ message: 'CI/CD pipeline working in VPS!' });
+    const spy = vi.spyOn(dataObj, 'getData').mockReturnValue(Promise.resolve({ message: 'CI/CD pipeline working in VPS!' }));
 
-    let result = '';
     await act(async () => {
       result = await dataObj.getData();
     });

@@ -1,19 +1,26 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 
+interface Message {
+  message: string;
+}
+
 export const dataObj = {
-  getData: () => null,
+  getData: (): Promise<Message> => { 
+    return Promise.resolve({ message: 'Not connected to server' }); 
+  },
 };
 
 function App() {
 
-  const [ data, setData ] = useState('Not connecting to server');
+  const [ data, setData ] = useState({ message: 'Not connected to server' });
 
-  dataObj.getData = async () => {
+  dataObj.getData = async (): Promise<Message> => {
     const resp = await fetch('http://localhost:3000/');
-    const result = await resp.json();
+    const result: Message = await resp.json();
 
     setData(result);
+    return result;
   };
 
   useEffect(() => {
