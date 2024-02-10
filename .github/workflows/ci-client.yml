@@ -38,7 +38,7 @@ jobs:
           nvm use v18.16.1
           cd client
           npm install
-          npm run test       
+          npm test       
   # Definimos un job llamado "build" que se ejecutará una vez el job "testing" haya finalizado
   # para eso usamos la propiedad "needs"
   build:
