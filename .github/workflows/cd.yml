@@ -31,7 +31,7 @@ jobs:
         port: 22
         # En esta sección se ejecutan los comando sobre el sistema para conseguir el despliegue
         script: |
-          cd /home/${{ secrets.USERNAME }}/apps/actos/
+          cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
           nvm use v18.16.1
           cd server
           pm2 startOrGracefulReload pm2run.json

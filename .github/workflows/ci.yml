@@ -31,15 +31,16 @@ jobs:
         port: 22
         # En esta sección se ejecutan los comando sobre el sistema para conseguir la integración
         script: |
-          cd /home/${{ secrets.USERNAME }}/apps/actos/
+          cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
           git pull origin main
           nvm use v18.16.1
           cd server
           npm install
-          npm run build
           npm run test
+          npm run build
           cd ..
           cd client
           npm install
-          npm run build
           npm run test
+          npm run build
+          
