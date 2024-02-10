@@ -34,7 +34,7 @@ jobs:
           cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
           git pull origin main
           nvm use v18.16.1
-          pm2 stop CICD Medium Server
+          pm2 stop "CICD Medium Server"
           cd server
           npm install
           npm run test
