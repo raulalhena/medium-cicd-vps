@@ -1,13 +1,15 @@
 # Pipeline para integrar aplicaciones NodeJS en un VPS: Raul Alhena
 
-name: Integration
+name: Client Integration
 
 # Controla cuando la acción se iniciará. 
 on:
   # Disparador del workflow, la condición que se tiene que cumplir para poner en 
   # marcha el worwflow, en este caso: realizar un push en la rama main del repositorio
-  push:
-    branches: [ main ]
+  workflow-run:
+    workflows: ['Server Deployment']
+    types:
+      - completed
 
 # Este es el proceso de acciones que se van a ejecutar, pueden ejecutarse de un job a varios,
 # tanto secuancialmente en paralelo
@@ -34,11 +36,6 @@ jobs:
           cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
           git pull origin main
           nvm use v18.16.1
-          cd server
-          npm install
-          npm run test
-          npm run build
-          cd ..
           cd client
           npm install
           npm run test

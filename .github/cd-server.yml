@@ -1,13 +1,15 @@
 # Pipeline para desplegar aplicaciones NodeJS en un VPS: Raul Alhena
 
-name: Deployment
+name: Server Deployment
 
 # Controla cuando la acción se iniciará. 
 on:
   # Disparador del workflow, la condición que se tiene que cumplir para poner en 
   # marcha el worwflow, en este caso: realizar un push en la rama main del repositorio
-  push:
-    branches: [ main ]
+  workflow-run:
+    workflows: ['Server Integration']
+    types:
+      - completed
 
 # Este es el proceso de acciones que se van a ejecutar, pueden ejecutarse de un job a varios,
 # tanto secuancialmente en paralelo
@@ -35,6 +37,3 @@ jobs:
           nvm use v18.16.1
           cd server
           pm2 startOrGracefulReload pm2run.json
-          cd ..
-          cd client
-          cp -r ./dist/* /var/www/actos/html/

@@ -1,0 +1,66 @@
+# Pipeline para integrar aplicaciones NodeJS en un VPS: Raul Alhena
+
+name: Server Integration
+
+# Controla cuando la acción se iniciará. 
+on:
+  # Disparador del workflow, la condición que se tiene que cumplir para poner en 
+  # marcha el worwflow, en este caso: realizar un push en la rama main del repositorio
+  push:
+    branches: [ main ]
+
+# Este es el proceso de acciones que se van a ejecutar, pueden ejecutarse de un job a varios,
+# tanto secuancialmente en paralelo
+jobs:
+  # Definimos un job llamado "testing"
+  testing:
+    # El sistema en el que se ejecutará el job
+    runs-on: ubuntu-latest
+
+    # steps representa la secuencia de tareas que se ejecutarán como parte del job
+    steps:
+    - name: Integration using ssh
+      uses: appleboy/ssh-action@master
+      # Usamos variables de entorno del propio Github para no exponer información delicada
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SERVER_KEY }}
+        port: 22
+        # En esta sección se ejecutan los comando sobre el sistema para conseguir la integración
+        script: |
+          cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
+          git pull origin main
+          nvm use v18.16.1
+          cd server
+          npm install
+          npm run test
+  # Definimos un job llamado "build" que se ejecutará una vez el job "testing" haya finalizado
+  # para eso usamos la propiedad "needs"
+  build:
+    needs: testing
+    # El sistema en el que se ejecutará el job
+    runs-on: ubuntu-latest
+
+    # steps representa la secuencia de tareas que se ejecutarán como parte del job
+    steps:
+    - name: Integration using ssh
+      uses: appleboy/ssh-action@master
+      # Usamos variables de entorno del propio Github para no exponer información delicada
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SERVER_KEY }}
+        port: 22
+        # En esta sección se ejecutan los comando sobre el sistema para conseguir la integración
+        script: |
+          cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
+          git pull origin main
+          nvm use v18.16.1
+          cd server
+          npm run build
+          
