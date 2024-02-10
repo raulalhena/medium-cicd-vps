@@ -1,6 +1,6 @@
 # Pipeline para integrar aplicaciones NodeJS en un VPS: Raul Alhena
 
-name: Integration 
+name: Integration
 
 # Controla cuando la acción se iniciará. 
 on:
