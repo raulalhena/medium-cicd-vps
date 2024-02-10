@@ -27,7 +27,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
+        key: ${{ secrets.SERVER_KEY }}
         port: 22
         # En esta sección se ejecutan los comando sobre el sistema para conseguir la integración
         script: |
