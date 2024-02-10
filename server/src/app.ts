@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 // Guardamos la instancia del servidor http creado por app.listen() para
-// poder cerrar el servidor al realizar los tests
+// poder cerrar el servidor al realizar los tests 
 export const httpServer = app.listen('3000', () => {
   console.log('Server listen in port 3000...');
 });
