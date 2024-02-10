@@ -15,7 +15,7 @@ on:
 # tanto secuancialmente en paralelo
 jobs:
   # Definimos un job llamado "build"
-  build:
+  testing:
     # El sistema en el que se ejecutará el job
     runs-on: ubuntu-latest
 
@@ -38,6 +38,32 @@ jobs:
           nvm use v18.16.1
           cd client
           npm install
-          npm run test
+          npm run test       
+  # Definimos un job llamado "build" que se ejecutará una vez el job "testing" haya finalizado
+  # para eso usamos la propiedad "needs"
+  build:
+    needs: testing
+    # El sistema en el que se ejecutará el job
+    runs-on: ubuntu-latest
+
+    # steps representa la secuencia de tareas que se ejecutarán como parte del job
+    steps:
+    - name: Integration using ssh
+      uses: appleboy/ssh-action@master
+      # Usamos variables de entorno del propio Github para no exponer información delicada
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SERVER_KEY }}
+        port: 22
+        # En esta sección se ejecutan los comando sobre el sistema para conseguir la integración
+        script: |
+          cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
+          git pull origin main
+          nvm use v18.16.1
+          cd client
+          npm install
           npm run build
           
