@@ -3,7 +3,10 @@ import cors from 'cors';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  optionsSuccessStatus: 200
+}));
 
 export const getMessage = (): string => {
   return 'CI/CD pipeline working in VPS!';
