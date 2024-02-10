@@ -6,7 +6,7 @@ name: Client Deployment
 on:
   # Disparador del workflow, la condición que se tiene que cumplir para poner en 
   # marcha el worwflow, en este caso: realizar un push en la rama main del repositorio
-  workflow-run:
+  workflow_run:
     workflows: ['Client Integration']
     types:
       - completed
