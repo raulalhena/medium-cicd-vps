@@ -18,7 +18,6 @@ Se han creado unos tests sencillos para poder mostrar la ejecución de los mismo
 - Github Actions
 - Servidor Privado Virtual - VPS (Virtual Private Server)
 - pm2 - [Guía de instalación de pm2](https://pm2.io/docs/runtime/guide/installation/)
-- 
 
 Es necesario tener acceso a un VPS con permisos de administración, un servidor web ejecutandose en el servidor, y pm2. También es necesaria una cuenta en Github para poder ejecutar las Github Actions.
 
