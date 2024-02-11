@@ -63,6 +63,12 @@ Ejecución de los tests:
   npm test
 ```
 
-## Configuración de claves SSH
+## Configuración de los sistemas y creación de los workflows:
 
-Asegurate de seguir los pasos que se indican abajo para la creación de las claves SSH.
+Para seguir con todo el proceso y conseguir ejecutar con éxito la pipeline y así automatizar todo el proceso de puesta en entornos de pre producción o producción de tus aplicaciones sigue los pasos detallos en el artículo de Medium:
+
+[Medium CI/CD en VPS](https://medium.com/@raul-alhena/ci-cd-pipeline-github-actions-en-vps-5b81e63bfed1)
+
+### Contacto
+
+raul.alhena@gmail.com
