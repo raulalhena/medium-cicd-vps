@@ -16,6 +16,8 @@ on:
 jobs:
   # Definimos un job llamado "build"
   testing:
+    # Condicionamos la ejecución del job a que el workflow anterior haya finalizado con éxito
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # El sistema en el que se ejecutará el job
     runs-on: ubuntu-latest
 
