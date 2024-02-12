@@ -14,8 +14,8 @@ on:
 # Este es el proceso de acciones que se van a ejecutar, pueden ejecutarse de un job a varios,
 # tanto secuancialmente en paralelo
 jobs:
-  # Definimos un job llamado "build"
-  build:
+  # Definimos un job llamado "on-success"
+  on-success:
     # El sistema en el que se ejecutará el job
     runs-on: ubuntu-latest
 

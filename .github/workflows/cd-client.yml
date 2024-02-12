@@ -15,7 +15,7 @@ on:
 # tanto secuancialmente en paralelo
 jobs:
   # Definimos un job llamado "build"
-  build:
+  on-success:
     # El sistema en el que se ejecutará el job
     runs-on: ubuntu-latest
 

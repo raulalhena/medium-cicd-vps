@@ -15,7 +15,7 @@ on:
 # tanto secuancialmente en paralelo
 jobs:
   # Definimos un job llamado "build"
-  testing:
+  on-success:
     # El sistema en el que se ejecutará el job
     runs-on: ubuntu-latest
 
@@ -42,7 +42,7 @@ jobs:
   # Definimos un job llamado "build" que se ejecutará una vez el job "testing" haya finalizado
   # para eso usamos la propiedad "needs"
   build:
-    needs: testing
+    needs: on-success
     # El sistema en el que se ejecutará el job
     runs-on: ubuntu-latest
 
