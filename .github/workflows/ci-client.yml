@@ -38,7 +38,6 @@ jobs:
           cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
           git pull origin main
           source ~/.nvm/nvm.sh
-          nvm use v18.16.1
           cd client
           npm install
           npm test       
@@ -66,7 +65,6 @@ jobs:
           cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
           git pull origin main
           source ~/.nvm/nvm.sh
-          nvm use v18.16.1
           cd client
           npm install
           npm run build

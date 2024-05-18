@@ -37,6 +37,5 @@ jobs:
         script: |
           cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
           source ~/.nvm/nvm.sh
-          nvm use v18.16.1
           cd server
           pm2 startOrGracefulReload pm2run.json
