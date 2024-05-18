@@ -36,6 +36,7 @@ jobs:
         # En esta sección se ejecutan los comando sobre el sistema para conseguir el despliegue
         script: |
           cd /home/${{ secrets.USERNAME }}/apps/cicdmedium/
+          source ~/.nvm/nvm.sh
           nvm use v18.16.1
           cd client
           cp -r ./dist/* /var/www/cicdmedium/html/
